@@ -1,0 +1,17 @@
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = [
+  "E", # ошибки синтаксиса/стиля
+  "F", # потенциальные ошибки (undefined, модули, переменные и тд)
+]
+ignore = [
+  "E501", # длинные строки (ориентир на line-length)
+  "E402", # импорты
+]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+
