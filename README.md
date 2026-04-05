@@ -22,3 +22,4 @@
 - POST	/tasks/	Создать задачу	{title, description, priority}
 - PUT	/tasks/{id}	Обновить задачу	{title/description/completed/priority}
 - DELETE	/tasks/{id}	Удалить задачу
+изменения для пулл реквест
