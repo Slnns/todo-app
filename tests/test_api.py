@@ -16,6 +16,7 @@ from schemas import TaskCreate
 
 
 def _fake_task_row(**kwargs):
+    #принимает любые именованные аргументы
     defaults = {
         "id": 1,
         "title": "a",
@@ -31,6 +32,7 @@ def _fake_task_row(**kwargs):
         priority=defaults["priority"],
         completed=defaults["completed"],
     )
+    #установка значений
     for k, v in defaults.items():
         setattr(t, k, v)
     return t
@@ -51,6 +53,7 @@ def test_root_ok(client):
 
 def test_list_tasks_empty(test_app, client):
     mock_db = MagicMock()
+    #настройка возврата пустого списка
     mock_db.query.return_value.order_by.return_value.all.return_value = []
     _override_get_db(test_app, mock_db)
     try:
