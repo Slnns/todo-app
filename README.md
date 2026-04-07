@@ -22,3 +22,23 @@
 - POST	/tasks/	Создать задачу	{title, description, priority}
 - PUT	/tasks/{id}	Обновить задачу	{title/description/completed/priority}
 - DELETE	/tasks/{id}	Удалить задачу
+
+## Подготовка
+
+- Аккаунты на [GitHub](https://github.com) и [Docker Hub](https://hub.docker.com)
+- В репозитории GitHub → Settings → Secrets → Actions добавить секреты:
+  - `DOCKER_HUB_USER` (логин Docker Hub)
+  - `DOCKER_HUB_TOKEN` (токен Docker Hub)
+  - `DOCKER_IMAGE` (имя образа: `логин/todo-app`)
+  - `POSTGRES_USER` (пользователь бд)
+  - `POSTGRES_PASSWORD` (пароль)
+  - `POSTGRES_DB` (имя бд)
+
+При импорте приложения вызывается метод для создания таблиц и без запущенного контейнера базы данных сборка упадёт с ошибкой подключения.
+
+## Запуск пайплайна
+
+```bash
+git add .
+git commit -m "CI/CD pipline"
+git push origin main

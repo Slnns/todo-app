@@ -39,7 +39,7 @@ jobs:
           DB_NAME: ${{ secrets.POSTGRES_DB }}
         run: |
           cd app/src
-          python -c "from main import app; print('Build OK')"
+          python -c "from main import app"
 
   #Линтер
   lint:
@@ -84,9 +84,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Docker image
-        run: |
-          docker build -t todo-app:${GITHUB_SHA::7} ./app
-          echo "Docker image built: todo-app:${GITHUB_SHA::7}"
+        run: docker build -t todo-app:${GITHUB_SHA::7} ./app
 
   #Push в Docker Hub
   docker_push:
@@ -106,4 +104,3 @@ jobs:
           docker tag ${{ secrets.DOCKER_IMAGE }}:${GITHUB_SHA::7} ${{ secrets.DOCKER_IMAGE }}:latest
           docker push ${{ secrets.DOCKER_IMAGE }}:${GITHUB_SHA::7}
           docker push ${{ secrets.DOCKER_IMAGE }}:latest
-          echo "Pushed to Docker Hub"
